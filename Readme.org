@@ -1,7 +1,6 @@
 #+author: conao
 #+date: <2018-10-25 Thu>
 
-* github-header
 [[https://github.com/conao3/github-header][https://img.shields.io/github/tag/conao3/github-header.svg?style=flat-square]]
 [[https://travis-ci.org/conao3/github-header][https://img.shields.io/travis/conao3/github-header/master.svg?style=flat-square]]
 [[https://github.com/conao3/github-header][https://img.shields.io/github/license/conao3/github-header.svg?style=flat-square]]
