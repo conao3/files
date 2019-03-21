@@ -25,4 +25,3 @@
 (defn create-header [name]
   (create-header-svg name)
   (create-header-png name))
-
