@@ -4,7 +4,7 @@
 [[https://github.com/conao3/github-header][https://img.shields.io/github/tag/conao3/github-header.svg?style=flat-square]]
 [[https://travis-ci.org/conao3/github-header][https://img.shields.io/travis/conao3/github-header/master.svg?style=flat-square]]
 [[https://github.com/conao3/github-header][https://img.shields.io/github/license/conao3/github-header.svg?style=flat-square]]
-[[https://github.com/conao3/github-header][https://files.conao3.com/github-header/gif/github-header.gif]]
+[[https://github.com/conao3/files][https://raw.githubusercontent.com/conao3/files/master/header/png/files.png]]
 
 - [[#what-is-it][What is it?]]
 
