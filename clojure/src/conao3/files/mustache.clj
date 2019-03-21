@@ -6,15 +6,15 @@
   (:gen-class))
 
 (defn create-header-svg [name]
-  (-> (str "../headers/svg/" name ".svg")
+  (-> (str "../header/svg/" name ".svg")
       (spit (mustache/render-resource "header.svg.mustache" {:name name}))))
 
 (defn create-header-png [name]
-  (let [svgpath (str "../headers/svg/" name ".svg")
-        pngpath (str "../headers/png/" name ".png")
+  (let [svgpath (str "../header/svg/" name ".svg")
+        pngpath (str "../header/png/" name ".png")
         svgfile (io/file svgpath)]
     (when-not (.exists svgfile) (create-header-svg name))
-    (sh "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+    (sh "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
         "--headless"
         "--disable-gpu"
         "--screenshot=screenshot.png"
