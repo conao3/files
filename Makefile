@@ -3,7 +3,7 @@ HEADER := $(REPOS:%=header/png/%.png)
 
 all: $(HEADER)
 
-header/png/%.png: clojure/target/uberjar/files-0.1.0-standalone.jar clojure
+header/png/%.png: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
 	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header $*
 
 clojure/target/uberjar/files-0.1.0-standalone.jar: clojure/src
