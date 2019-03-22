@@ -6,9 +6,9 @@ git:
 
 addons:
   chrome: stable
-  homebrew:
-    taps: homebrew/cask-fonts
-    casks: font-roboto
+  apt:
+    packages:
+      - fonts-roboto
 
 env:
   global:
