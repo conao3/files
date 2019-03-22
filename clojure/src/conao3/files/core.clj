@@ -71,4 +71,5 @@
       (exit (if ok? 0 1) exit-message)
       (case action
         "create-header" (mustache/create-header options))))
-  (println (str "o  " (.toString (java.util.Date.)))))
+  (println (str "o  " (.toString (java.util.Date.))))
+  (shutdown-agents))
