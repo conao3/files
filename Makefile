@@ -3,6 +3,8 @@ DATEDETAIL := $(shell date '+%Y/%m/%d %H:%M:%S')
 REPOS      := $(shell curl https://api.github.com/users/conao3/repos?per_page=1000 | jq -r '.[].name')
 HEADER     := $(REPOS:%=header/png/%.png)
 
+HEADERFLUG := $(if $$CHROME_PATH,--chrome $$CHROME_PATH,)
+
 ##################################################
 
 .PHONY: all debug commit merge push
@@ -10,10 +12,11 @@ HEADER     := $(REPOS:%=header/png/%.png)
 all: debug $(HEADER)
 
 debug:
-	@echo $(REPOS)
+	@echo 'REPOS=' $(REPOS)
+	@echo 'HEADERFLUG=' $(HEADERFLUG)
 
 header/png/%.png: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
-	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header $* --chrome $$CHROME_PATH
+	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header $* $(HEADERFLUG)
 
 clojure/target/uberjar/files-0.1.0-standalone.jar: clojure/src/conao3/files
 	cd clojure; lein uberjar
