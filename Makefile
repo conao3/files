@@ -5,9 +5,12 @@ HEADER     := $(REPOS:%=header/png/%.png)
 
 ##################################################
 
-.PHONY: all commit merge push
+.PHONY: all debug commit merge push
 
-all: $(HEADER)
+all: debug $(HEADER)
+
+.make-debug:
+	echo $(REPOS)
 
 header/png/%.png: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
 	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header $*
