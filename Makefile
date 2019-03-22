@@ -26,8 +26,8 @@ checkout:
 	echo "job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL)" >> commit.log
 
 commit:
-	git add .
 	git diff --cached --stat | tail -n1 >> commit.log
+	git add .
 	git commit --allow-empty -m "generate (job $$TRAVIS_JOB_NUMBER) [skip ci]"
 
 merge:
