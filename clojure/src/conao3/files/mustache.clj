@@ -15,6 +15,7 @@
         pngpath (str "../header/png/" name ".png")
         svgfile (io/file svgpath)]
     (when-not (.exists svgfile) (create-header-svg name))
+    (println (str "aa " (.toString (java.util.Date.))))
     (sh "bash" "-c"
         (string/join
          " "
@@ -24,9 +25,14 @@
           "--screenshot=screenshot.png"
           "--window-size=1000,170"
           (str "file://" (.getCanonicalPath svgfile))]))
-    (util/move-file "./screenshot.png" pngpath)))
+    (println (str "bb " (.toString (java.util.Date.))))
+    (util/move-file "./screenshot.png" pngpath)
+    (println (str "cc " (.toString (java.util.Date.))))))
 
 (defn create-header [args]
   (let [name (first args)]
+    (println (str "a  " (.toString (java.util.Date.))))
     (create-header-svg name)
-    (create-header-png name)))
+    (println (str "b  " (.toString (java.util.Date.))))
+    (create-header-png name)
+    (println (str "c  " (.toString (java.util.Date.))))))

@@ -65,9 +65,10 @@
   (System/exit status))
 
 (defn -main [& args]
+  (println (str "o  " (.toString (java.util.Date.))))
   (let [{:keys [action options exit-message ok?]} (validate-args args)]
     (if exit-message
       (exit (if ok? 0 1) exit-message)
-      (do (println action) (println options)
       (case action
-        "create-header" (mustache/create-header options))))))
+        "create-header" (mustache/create-header options))))
+  (println (str "o  " (.toString (java.util.Date.)))))
