@@ -13,7 +13,7 @@ debug:
 	@echo $(REPOS)
 
 header/png/%.png: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
-	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header $*
+	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header $* --chrome $$CHROME_PATH
 
 clojure/target/uberjar/files-0.1.0-standalone.jar: clojure/src/conao3/files
 	cd clojure; lein uberjar

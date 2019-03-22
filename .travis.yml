@@ -7,6 +7,10 @@ git:
 addons:
   chrome: stable
 
+env:
+  global:
+    - CHROME_PATH="google-chrome-stable"
+
 install:
   - openssl aes-256-cbc -K $encrypted_34612acf6c90_key -iv $encrypted_34612acf6c90_iv -in garario_rsa.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
