@@ -6,7 +6,8 @@
   (let [oldfile (.getAbsoluteFile (io/file oldpath))
         newfile (.getAbsoluteFile (io/file newpath))]
     (when-not (.exists oldfile)
-      (throw (java.io.FileNotFoundException. "Not found sourcefile.")))
+      (throw (java.io.FileNotFoundException. (str "Not found sourcefile. "
+                                                  (.getCanonicalPath oldfile)))))
     (.mkdirs (.getParentFile newfile))
     (io/copy oldfile newfile)
     (.delete oldfile)))
