@@ -26,6 +26,7 @@
           (str "file://" (.getCanonicalPath svgfile))]))
     (util/move-file "./screenshot.png" pngpath)))
 
-(defn create-header [name]
-  (create-header-svg name)
-  (create-header-png name))
+(defn create-header [args]
+  (let [name (first args)]
+    (create-header-svg name)
+    (create-header-png name)))
