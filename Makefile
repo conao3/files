@@ -3,7 +3,8 @@ DATEDETAIL := $(shell date '+%Y/%m/%d %H:%M:%S')
 REPOS      := $(shell curl https://api.github.com/users/conao3/repos?per_page=1000 | jq -r '.[].name')
 HEADER     := $(REPOS:%=header/png/%.png)
 
-HEADERFLUG := $(if $$CHROME_PATH,--chrome $$CHROME_PATH,)
+CHROME_PATH ?=
+HEADERFLUG := $(if $(CHROME_PATH),--chrome $(CHROME_PATH),)
 
 ##################################################
 

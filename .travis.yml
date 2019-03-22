@@ -26,4 +26,4 @@ jobs:
       stage: "Create"
       script:
         - make checkout
-        - make && make commit && make merge && make push
+        - make CHROME_PATH=$CHROME_PATH && make commit && make merge && make push
