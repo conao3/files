@@ -15,16 +15,22 @@
         pngpath (str "../header/png/" name ".png")
         svgfile (io/file svgpath)]
     (when-not (.exists svgfile) (create-header-svg name))
-    (sh "bash" "-c"
-        (string/join
-         " "
-         [(if chrome chrome
-              "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome")
-          "--headless"
-          "--disable-gpu"
-          "--screenshot=screenshot.png"
-          "--window-size=1000,170"
-          (str "file://" (.getCanonicalPath svgfile))]))
+    (let [ret (sh "bash" "-c"
+                  (string/join
+                   " "
+                   [(if chrome chrome
+                        "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome")
+                    "--headless"
+                    "--disable-gpu"
+                    "--screenshot=screenshot.png"
+                    "--window-size=1000,170"
+                    (str "file://" (.getCanonicalPath svgfile))]))]
+      (when-not (zero? (:exit ret))
+        (throw (java.lang.Exception. (string/join
+                                      " "
+                                      ["[conao3]: Fail convert command"
+                                       "Return Value:" (:exit ret)
+                                       "Message:" (:out ret) (:err ret)])))))
     (util/move-file "./screenshot.png" pngpath)))
 
 (defn create-header [options]
