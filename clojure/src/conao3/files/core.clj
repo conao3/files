@@ -13,6 +13,7 @@
    ;;  :update-fn inc] ; Prior to 0.4.1, you would have to use:
    ;; ;; :assoc-fn (fn [m k _] (update-in m [k] inc))
    ;; A boolean option defaulting to nil
+   ["-c" "--chrome PATH" "google-chrome path"]
    ["-h" "--help" "Show this help"]])
 
 (defn usage [options-summary]
@@ -54,8 +55,9 @@
 
       (and (= 2 (count arguments))
            (#{"create-header"} (first arguments)))
-      {:action (first arguments)
-       :options `[~(fnext arguments) ~@options]}
+      (do (println options)
+          {:action (first arguments)
+           :options (merge {:rest (next arguments)} options)})
 
       :else ; failed custom validation => exit with usage summary
       {:exit-message (usage summary)})))

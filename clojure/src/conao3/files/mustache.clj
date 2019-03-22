@@ -6,11 +6,11 @@
             [conao3.files.util :as util])
   (:gen-class))
 
-(defn create-header-svg [name]
+(defn create-header-svg [name options]
   (-> (str "../header/svg/" name ".svg")
       (spit (mustache/render-resource "header.svg.mustache" {:name name}))))
 
-(defn create-header-png [name]
+(defn create-header-png [name {:keys [chrome] :as options}]
   (let [svgpath (str "../header/svg/" name ".svg")
         pngpath (str "../header/png/" name ".png")
         svgfile (io/file svgpath)]
@@ -18,7 +18,8 @@
     (sh "bash" "-c"
         (string/join
          " "
-         ["/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
+         [(if chrome chrome
+              "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome")
           "--headless"
           "--disable-gpu"
           "--screenshot=screenshot.png"
@@ -26,7 +27,7 @@
           (str "file://" (.getCanonicalPath svgfile))]))
     (util/move-file "./screenshot.png" pngpath)))
 
-(defn create-header [args]
-  (let [name (first args)]
-    (create-header-svg name)
-    (create-header-png name)))
+(defn create-header [options]
+  (let [name (first (:rest options))]
+    (create-header-svg name options)
+    (create-header-png name options)))
