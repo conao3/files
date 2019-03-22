@@ -55,9 +55,8 @@
 
       (and (= 2 (count arguments))
            (#{"create-header"} (first arguments)))
-      (do (println options)
-          {:action (first arguments)
-           :options (merge {:rest (next arguments)} options)})
+      {:action (first arguments)
+       :options (merge {:rest (next arguments)} options)}
 
       :else ; failed custom validation => exit with usage summary
       {:exit-message (usage summary)})))
