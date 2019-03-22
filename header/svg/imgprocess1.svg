@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="170">
     <style type="text/css">
-        @import url('https://fonts.googleapis.com/css?family=Roboto:100');
         text {font-size: 60px; font-family: 'Roboto'; font-weight: 100;}
     </style>
     <g>
