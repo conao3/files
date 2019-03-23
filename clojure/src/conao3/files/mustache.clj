@@ -26,9 +26,11 @@
               ;;       "--window-size=1000,170"
               ;;       (str "file://" (.getCanonicalPath svgfile))]))
           (sh "bash" "-c"
-              "convert"
-              (str "../header/svg/" name ".svg")
-              (str "../header/png/" name ".png"))]
+              (string/join
+               " "
+               ["convert"
+                (str "../header/svg/" name ".svg")
+                (str "../header/png/" name ".png")]))]
       (when-not (zero? (:exit ret))
         (throw (java.lang.Exception. (string/join
                                       " "
