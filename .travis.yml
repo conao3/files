@@ -21,6 +21,7 @@ before_install:
   - cd ImageMagick-7.0.8-34
   - ./configure --with-rsvg --prefix=$HOME/local
   - make && make install
+  - cd -
 
 install:
   - openssl aes-256-cbc -K $encrypted_34612acf6c90_key -iv $encrypted_34612acf6c90_iv -in garario_rsa.enc -out ~/.ssh/id_rsa -d
