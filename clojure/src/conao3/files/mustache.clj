@@ -37,7 +37,8 @@
                                       ["[conao3]: Fail convert command"
                                        "Return Value:" (:exit ret)
                                        "Message:" (:out ret) (:err ret)])))))
-    (util/move-file "./screenshot.png" pngpath)))
+    ;; (util/move-file "./screenshot.png" pngpath)
+    ))
 
 (defn create-header [options]
   (let [name (first (:rest options))]
