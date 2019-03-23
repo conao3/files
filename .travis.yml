@@ -17,7 +17,7 @@ env:
 before_install:
   - cd /tmp
   - curl -O https://imagemagick.org/download/ImageMagick-7.0.8-34.tar.xz
-  - tar xvzf ImageMagick-7.0.8-34.tar.xz
+  - tar xvf ImageMagick-7.0.8-34.tar.xz
   - cd ImageMagick-7.0.8-34
   - ./configure --with-rsvg
   - make && make install
