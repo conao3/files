@@ -14,7 +14,7 @@ env:
   global:
     - CHROME_PATH="google-chrome-stable"
 
-before-install:
+before_install:
   - cd /tmp
   - curl -O https://imagemagick.org/download/ImageMagick-7.0.8-34.tar.xz
   - tar xvzf ImageMagick-7.0.8-34.tar.xz
