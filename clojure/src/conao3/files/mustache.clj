@@ -28,7 +28,7 @@
           (sh "bash" "-c"
               (string/join
                " "
-               ["convert"
+               ["~/local/bin/convert"
                 (str "../header/svg/" name ".svg")
                 (str "../header/png/" name ".png")]))]
       (when-not (zero? (:exit ret))
