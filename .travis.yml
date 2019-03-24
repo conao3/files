@@ -1,43 +1,43 @@
 language: clojure
 dist: xenial
 
-git:
-  depth: 5
+# git:
+#   depth: 5
 
-addons:
-  chrome: stable
-  apt:
-    packages:
-      - fonts-roboto
+# addons:
+#   chrome: stable
+#   apt:
+#     packages:
+#       - fonts-roboto
 
-env:
-  global:
-    - CHROME_PATH="google-chrome-stable"
+# env:
+#   global:
+#     - CHROME_PATH="google-chrome-stable"
 
-before_install:
-  - cd /tmp
-  - curl -O https://imagemagick.org/download/ImageMagick-7.0.8-34.tar.xz
-  - tar xvf ImageMagick-7.0.8-34.tar.xz
-  - cd ImageMagick-7.0.8-34
-  - ./configure --with-rsvg --prefix=$HOME/local
-  - make && make install
-  - export PATH=$HOME/local/bin:$PATH
-  - which convert
-  - cd $HOME/build/conao3/files
+# before_install:
+#   - cd /tmp
+#   - curl -O https://imagemagick.org/download/ImageMagick-7.0.8-34.tar.xz
+#   - tar xvf ImageMagick-7.0.8-34.tar.xz
+#   - cd ImageMagick-7.0.8-34
+#   - ./configure --with-rsvg --prefix=$HOME/local
+#   - make && make install
+#   - export PATH=$HOME/local/bin:$PATH
+#   - which convert
+#   - cd $HOME/build/conao3/files
 
-install:
-  - openssl aes-256-cbc -K $encrypted_34612acf6c90_key -iv $encrypted_34612acf6c90_iv -in garario_rsa.enc -out ~/.ssh/id_rsa -d
-  - chmod 600 ~/.ssh/id_rsa
-  - git config --global user.name conao3
-  - git config --global user.email conao3@gmail.com
+# install:
+#   - openssl aes-256-cbc -K $encrypted_34612acf6c90_key -iv $encrypted_34612acf6c90_iv -in garario_rsa.enc -out ~/.ssh/id_rsa -d
+#   - chmod 600 ~/.ssh/id_rsa
+#   - git config --global user.name conao3
+#   - git config --global user.email conao3@gmail.com
 
-  - git remote -v
-  - git remote set-url origin git@github.com:conao3/files.git
+#   - git remote -v
+#   - git remote set-url origin git@github.com:conao3/files.git
 
-jobs:
-  include:
-    - if: branch = master
-      stage: "Create"
-      script:
-        - make checkout
-        - make CHROME_PATH=$CHROME_PATH && make commit && make merge && make push
+# jobs:
+#   include:
+#     - if: branch = master
+#       stage: "Create"
+#       script:
+#         - make checkout
+#         - make CHROME_PATH=$CHROME_PATH && make commit && make merge && make push
