@@ -25,6 +25,8 @@
     ""
     "Actions:"
     "  create-header NAME     Create header image"
+    "  create-header-svg NAME    Create header svg"
+    "  create-header-png NAME    Create header png"
     ""
     "Options:"
     options-summary
@@ -54,7 +56,7 @@
       ;; {:action (first arguments) :options options}
 
       (and (= 2 (count arguments))
-           (#{"create-header"} (first arguments)))
+           (#{"create-header" "create-header-svg"} (first arguments)))
       {:action (first arguments)
        :options (merge {:rest (next arguments)} options)}
 
@@ -70,5 +72,7 @@
     (if exit-message
       (exit (if ok? 0 1) exit-message)
       (case action
-        "create-header" (mustache/create-header options))))
+        "create-header" (mustache/create-header options)
+        "create-header-svg" (mustache/create-header-svg-entry options)
+        "create-header-png" (mustache/create-header-png-entry options))))
   (shutdown-agents))

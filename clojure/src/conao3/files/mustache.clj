@@ -40,6 +40,14 @@
     ;; (util/move-file "./screenshot.png" pngpath)
     ))
 
+(defn create-header-svg-entry [options]
+  (let [name (first (:rest options))]
+    (create-header-svg name options)))
+
+(defn create-header-png-entry [options]
+  (let [name (first (:rest options))]
+    (create-header-png name options)))
+
 (defn create-header [options]
   (let [name (first (:rest options))]
     (create-header-svg name options)

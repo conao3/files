@@ -16,8 +16,10 @@ debug:
 	@echo 'REPOS=' $(REPOS)
 	@echo 'HEADERFLUG=' $(HEADERFLUG)
 
-header/png/%.png: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
-#	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header $* $(HEADERFLUG)
+header/png/%.svg: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
+	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header-svg $* $(HEADERFLUG)
+
+header/png/%.png: header/png/%.svg
 	convert header/svg/$*.svg $@
 
 clojure/target/uberjar/files-0.1.0-standalone.jar: clojure/src/conao3/files
