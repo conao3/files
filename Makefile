@@ -9,6 +9,7 @@ HEADERFLUG := $(if $(CHROME_PATH),--chrome $(CHROME_PATH),)
 ##################################################
 
 .PHONY: all debug commit merge push
+.PRECIOUS: header/svg/%.svg
 
 all: debug $(HEADER)
 
@@ -16,7 +17,7 @@ debug:
 	@echo 'REPOS=' $(REPOS)
 	@echo 'HEADERFLUG=' $(HEADERFLUG)
 
-header/png/%.svg: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
+header/svg/%.svg: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
 	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header-svg $* $(HEADERFLUG)
 
 header/png/%.png: header/svg/%.svg
