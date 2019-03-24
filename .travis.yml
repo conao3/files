@@ -21,6 +21,8 @@ before_install:
   - cd ImageMagick-7.0.8-34
   - ./configure --with-rsvg --prefix=$HOME/local
   - make && make install
+  - export PATH=$HOME/local/bin:$PATH
+  - which convert
   - cd $HOME/build/conao3/files
 
 install:
