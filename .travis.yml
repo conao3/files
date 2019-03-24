@@ -1,6 +1,9 @@
 language: clojure
 dist: xenial
 
+script:
+  - lein
+
 # git:
 #   depth: 5
 
