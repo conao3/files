@@ -1,12 +1,60 @@
-#+author: conao
+#+author: conao3
 #+date: <2018-10-25 Thu>
 
-[[https://github.com/conao3/github-header][https://img.shields.io/github/tag/conao3/github-header.svg?style=flat-square]]
-[[https://travis-ci.org/conao3/github-header][https://img.shields.io/travis/conao3/github-header/master.svg?style=flat-square]]
-[[https://github.com/conao3/github-header][https://img.shields.io/github/license/conao3/github-header.svg?style=flat-square]]
 [[https://github.com/conao3/files][https://raw.githubusercontent.com/conao3/files/master/header/png/files.png]]
+[[https://github.com/conao3/files/blob/master/LICENSE][https://img.shields.io/github/license/conao3/files.svg?style=flat-square]]
+[[https://github.com/conao3/files/releases][https://img.shields.io/github/tag/conao3/files.svg?style=flat-square]]
+[[https://travis-ci.org/conao3/files][https://img.shields.io/travis/conao3/files/master.svg?style=flat-square]]
+[[https://app.codacy.com/project/conao3/files/dashboard][https://img.shields.io/codacy/grade/03aff8c0aebd4ba98c11f7e9d0ad4135.svg?logo=codacy&style=flat-square]]
+[[https://www.patreon.com/conao3][https://img.shields.io/badge/patreon-@conao3-orange.svg?logo=patreon&style=flat-square]]
+[[https://twitter.com/conao_3][https://img.shields.io/badge/twitter-@conao__3-blue.svg?logo=twitter&style=flat-square]]
+[[https://join.slack.com/t/conao3-support/shared_invite/enQtNTg2MTY0MjkzOTU0LTFjOTdhOTFiNTM2NmY5YTE5MTNlYzNiOTE2MTZlZWZkNDEzZmRhN2E0NjkwMWViZTZiYjA4MDUxYTUzNDZiNjY][https://img.shields.io/badge/chat-on_slack-blue.svg?logo=slack&style=flat-square]]
 
-- [[#what-is-it][What is it?]]
+* Table of Contents
+- [[#background][Background]]
+- [[#install][Install]]
+- [[#usage][Usage]]
+- [[#information][Information]]
+  - [[#donation][Donation]]
+  - [[#community][Community]]
+  - [[#contribution][Contribution]]
+  - [[#license][License]]
+  - [[#author][Author]]
+  - [[#contributors][Contributors]]
 
-* What is it?
+* Background
 Github header for conao's repository.
+
+* Install
+
+* Usage
+
+* Information
+** Donation
+I love OSS and I am dreaming of working on it as *full-time* job.
+
+*With your support*, I will be able to spend more time at OSS!
+
+[[https://www.patreon.com/conao3][https://c5.patreon.com/external/logo/become_a_patron_button.png]]
+
+** Community
+All feedback and suggestions are welcome!
+
+You can use github issues, but you can also use [[https://join.slack.com/t/conao3-support/shared_invite/enQtNTg2MTY0MjkzOTU0LTFjOTdhOTFiNTM2NmY5YTE5MTNlYzNiOTE2MTZlZWZkNDEzZmRhN2E0NjkwMWViZTZiYjA4MDUxYTUzNDZiNjY][Slack]]
+if you want a more casual conversation.
+
+** Contribution
+Feel free to send PR!
+
+** License
+#+begin_example
+  Affero General Public License Version 3 (AGPLv3)
+  Copyright (c) Naoya Yamashita - https://conao3.com
+  https://github.com/conao3/files/blob/master/LICENSE
+#+end_example
+
+** Author
+- Naoya Yamashita ([[https://github.com/conao3][conao3]])
+
+** Contributors
+- Not yet... Now send PR and add your name!!
