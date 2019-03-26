@@ -44,3 +44,9 @@ merge:
 
 push:
 	git push origin master
+
+clean-v:
+	find header/png header/svg -type f | xargs -n1 echo "remove:"
+
+clean:
+	find header/png header/svg -type f | xargs rm -f
