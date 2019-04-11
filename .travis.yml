@@ -1,10 +1,15 @@
-language: clojure
-dist: xenial
+language: general
 
-before_install:
-install:
 script:
-  - lein
+  - pwd
+
+# language: clojure
+# dist: xenial
+
+# before_install:
+# install:
+# script:
+#   - lein
 
 # git:
 #   depth: 5
