@@ -1,15 +1,19 @@
 all:
 
 P ?= 12
+DIRS := header/png header/svg
 
 ##################################################
 
 .PHONY: all debug commit merge push
 .PRECIOUS: header/svg/%.svg
 
-all: header debug $(HEADER)
+all: $(DIRS) header
 
 ##############################
+
+$(DIRS):
+	mkdir -p $@
 
 header:
 	curl https://api.github.com/users/conao3/repos?per_page=1000 | \
