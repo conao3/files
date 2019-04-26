@@ -1,8 +1,4 @@
-REPOS      := $(shell curl https://api.github.com/users/conao3/repos?per_page=1000 | jq -r '.[].name')
-HEADER     := $(REPOS:%=header/png/%.png)
-
-CHROME_PATH ?=
-HEADERFLUG := $(if $(CHROME_PATH),--chrome $(CHROME_PATH),)
+all:
 
 P ?= 12
 
@@ -24,20 +20,7 @@ header:
 	      convert blob/header/svg/%%.svg blob/header/png/%.png && \
 	      echo %"
 
-debug:
-	@echo 'REPOS=' $(REPOS)
-	@echo 'HEADERFLUG=' $(HEADERFLUG)
-
-header/svg/%.svg: clojure/target/uberjar/files-0.1.0-standalone.jar clojure/resources
-	cd clojure; java -jar target/uberjar/files-0.1.0-standalone.jar create-header-svg $* $(HEADERFLUG)
-
-header/png/%.png: header/svg/%.svg
-	convert $< $@
-
-clojure/target/uberjar/files-0.1.0-standalone.jar: clojure/src/conao3/files
-	cd clojure; lein uberjar
-
-########################################
+##############################
 
 checkout:
 	git checkout master
