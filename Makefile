@@ -4,12 +4,22 @@ HEADER     := $(REPOS:%=header/png/%.png)
 CHROME_PATH ?=
 HEADERFLUG := $(if $(CHROME_PATH),--chrome $(CHROME_PATH),)
 
+P ?= 12
+
 ##################################################
 
 .PHONY: all debug commit merge push
 .PRECIOUS: header/svg/%.svg
 
-all: debug $(HEADER)
+all: header debug $(HEADER)
+
+##############################
+
+header:
+	curl https://api.github.com/users/conao3/repos?per_page=1000 | \
+	  jq -r '.[] | .name' | \
+	  xargs -n1 -P$(P) -t -I%% bash -c \
+	    "echo '(\"name\" : \"%%\")' | mustache - mustache/header.svg.mustache > blob/header/svg/%%.svg"
 
 debug:
 	@echo 'REPOS=' $(REPOS)
