@@ -12,8 +12,7 @@ DIRS := header/png header/svg
 
 ##################################################
 
-.PHONY: all debug commit merge push
-.PRECIOUS: header/svg/%.svg
+.PHONY: all header checkout commit merge push clean
 
 all: $(DIRS) header
 
@@ -50,8 +49,5 @@ merge:
 push:
 	git push origin master
 
-clean-v:
-	find header/png header/svg -type f | xargs -n1 echo "remove:"
-
 clean:
-	find header/png header/svg -type f | xargs rm -f
+	rm -rf $(DIRS)
