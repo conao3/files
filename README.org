@@ -1,7 +1,7 @@
 #+author: conao3
 #+date: <2018-10-25 Thu>
 
-[[https://github.com/conao3/files][https://raw.githubusercontent.com/conao3/files/master/header/png/files.png]]
+[[https://github.com/conao3/files][https://raw.githubusercontent.com/conao3/files/master/blob/headers/png/files.png]]
 [[https://github.com/conao3/files/blob/master/LICENSE][https://img.shields.io/github/license/conao3/files.svg?style=flat-square]]
 [[https://github.com/conao3/files/releases][https://img.shields.io/github/tag/conao3/files.svg?style=flat-square]]
 [[https://travis-ci.org/conao3/files][https://img.shields.io/travis/conao3/files/master.svg?style=flat-square]]
@@ -11,7 +11,7 @@
 [[https://join.slack.com/t/conao3-support/shared_invite/enQtNTg2MTY0MjkzOTU0LTFjOTdhOTFiNTM2NmY5YTE5MTNlYzNiOTE2MTZlZWZkNDEzZmRhN2E0NjkwMWViZTZiYjA4MDUxYTUzNDZiNjY][https://img.shields.io/badge/chat-on_slack-blue.svg?logo=slack&style=flat-square]]
 
 * Table of Contents
-- [[#background][Background]]
+- [[#description][Description]]
 - [[#install][Install]]
 - [[#usage][Usage]]
 - [[#information][Information]]
@@ -23,11 +23,13 @@
   - [[#contributors][Contributors]]
 
 * Background
-Github header for conao's repository.
+Big binaries for conao's repository.
 
 * Install
+No need to install. Fetch file directory like https://raw.githubusercontent.com/conao3/files/master/blob/headers/png/files.png .
 
 * Usage
+Just fetch images directory.
 
 * Information
 ** Donation
@@ -45,6 +47,19 @@ if you want a more casual conversation.
 
 ** Contribution
 Feel free to send PR!
+
+*** make
+~make~ runs ~make $(DIRS)~ and ~make headers~ that prepare dirs and create headers.
+
+This Makefile require ~imageMagic~ and ~mustache~.
+
+#+begin_src bash
+  brew install imagemagic
+  gem install mustache
+#+end_src
+
+*** make headers
+~make headers~ make header png from svg also created.
 
 ** License
 #+begin_example
