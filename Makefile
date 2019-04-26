@@ -8,26 +8,26 @@ all:
 # xargs parallel option
 P ?= 12
 
-DIRS := header/png header/svg
+DIRS := headers/png headers/svg
 
 ##################################################
 
-.PHONY: all header checkout commit merge push clean
+.PHONY: all headers checkout commit merge push clean
 
-all: $(DIRS) header
+all: $(DIRS) headers
 
 ##############################
 
 $(DIRS):
 	mkdir -p $@
 
-header:
+headers:
 	curl https://api.github.com/users/conao3/repos?per_page=1000 | \
 	  jq -r '.[] | .name' | \
 	  xargs -n1 -t -P$(P) -I% bash -c \
 	    "echo '{\"name\" : \"%\"}' | \
-	      mustache - mustache/header.svg.mustache > blob/header/svg/%.svg && \
-	      convert blob/header/svg/%%.svg blob/header/png/%.png && \
+	      mustache - mustache/headers.svg.mustache > blob/headers/svg/%.svg && \
+	      convert blob/headers/svg/%%.svg blob/headers/png/%.png && \
 	      echo %"
 
 ##############################
