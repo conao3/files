@@ -22,7 +22,7 @@
   - [[#author][Author]]
   - [[#contributors][Contributors]]
 
-* Background
+* Description
 Big binaries for conao's repository.
 
 * Install
