@@ -1,6 +1,8 @@
 all:
 
+# xargs parallel option
 P ?= 12
+
 DIRS := header/png header/svg
 
 ##################################################
