@@ -1,5 +1,10 @@
 all:
 
+# This Makefile require imageMagic and mustache command
+#
+#   $ brew install imageMagic
+#   $ gem install mustache
+
 # xargs parallel option
 P ?= 12
 
