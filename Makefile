@@ -1,5 +1,3 @@
-DATEDETAIL := $(shell date '+%Y/%m/%d %H:%M:%S')
-
 REPOS      := $(shell curl https://api.github.com/users/conao3/repos?per_page=1000 | jq -r '.[].name')
 HEADER     := $(REPOS:%=header/png/%.png)
 
@@ -31,7 +29,7 @@ clojure/target/uberjar/files-0.1.0-standalone.jar: clojure/src/conao3/files
 checkout:
 	git checkout master
 	git checkout -b travis-$$TRAVIS_JOB_NUMBER
-	echo "job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL)" >> commit.log
+	echo "job $$TRAVIS_JOB_NUMBER at $(shell date '+%Y/%m/%d %H:%M:%S')" >> commit.log
 
 commit:
 	git diff --cached --stat | tail -n1 >> commit.log
