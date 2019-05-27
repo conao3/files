@@ -8,7 +8,7 @@ all:
 # xargs parallel option
 P ?= 12
 
-DIRS := headers/png headers/svg
+DIRS := blob/headers/png blob/headers/svg
 
 ##################################################
 
@@ -24,11 +24,11 @@ $(DIRS):
 headers:
 	curl https://api.github.com/users/conao3/repos?per_page=1000 | \
 	  jq -r '.[] | .name' | \
-	  xargs -n1 -t -P$(P) -I% bash -c \
-	    "echo '{\"name\" : \"%\"}' | \
-	      mustache - mustache/headers.svg.mustache > blob/headers/svg/%.svg && \
-	      convert blob/headers/svg/%%.svg blob/headers/png/%.png && \
-	      echo %"
+	  xargs -n1 -P$(P) -I^ bash -c \
+	    "echo '{\"name\" : \"^\"}' | \
+	      mustache - mustache/header.svg.mustache > blob/headers/svg/^.svg && \
+	      convert blob/headers/svg/^.svg blob/headers/png/^.png && \
+	      echo ^"
 
 ##############################
 
