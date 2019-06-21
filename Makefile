@@ -15,6 +15,7 @@ DIRS := blob/headers/png blob/headers/svg
 ##################################################
 
 .PHONY: all headers headers-client checkout commit merge push clean
+.PRECIOUS: blob/headers/svg/%.svg
 
 all: headers
 
@@ -33,7 +34,7 @@ blob/headers/png/%.png: blob/headers/svg/%.svg
 	convert $< $@
 
 blob/headers/svg/%.svg:
-	echo '{\"name\" : \"$*\"}' | mustache - mustache/header.svg.mustache > $@
+	echo '{"name" : "$*"}' | mustache - mustache/header.svg.mustache > $@
 
 ##############################
 
