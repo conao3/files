@@ -12,12 +12,9 @@ DIRS := blob/headers/png blob/headers/svg
 
 ##################################################
 
-.PHONY: all headers checkout commit merge push clean
+.PHONY: all headers fetch-github checkout commit merge push clean
 
 all: $(DIRS) headers
-
-fetch:
-	$(eval REPOS := $(shell curl https://api.github.com/users/conao3/repos\?per_page=1000 | jq -r '.[] | .name'))
 
 ##############################
 
@@ -32,6 +29,9 @@ headers:
 	      mustache - mustache/header.svg.mustache > blob/headers/svg/^.svg && \
 	      convert blob/headers/svg/^.svg blob/headers/png/^.png && \
 	      echo ^"
+
+fetch-github:
+	$(eval REPOS := $(shell curl https://api.github.com/users/conao3/repos\?per_page=1000 | jq -r '.[] | .name'))
 
 ##############################
 
