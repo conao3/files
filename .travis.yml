@@ -5,14 +5,15 @@ addons:
     packages:
       - fonts-roboto
 
-stages:
-  - make
-    script:
-      - emacs --version
-  - push
-    if: branch = master
-    script:
-      - emacs --version
+jobs:
+  include:
+    - stage: make
+      script:
+        - emacs --version
+    - stage: push
+      if: branch = master
+      script:
+        - make -v
 
 # language: clojure
 # dist: xenial
