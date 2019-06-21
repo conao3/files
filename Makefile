@@ -8,30 +8,32 @@ all:
 # xargs parallel option
 P ?= 12
 
+REPOS :=
+
 DIRS := blob/headers/png blob/headers/svg
 
 ##################################################
 
-.PHONY: all headers fetch-github checkout commit merge push clean
+.PHONY: all headers headers-client checkout commit merge push clean
 
-all: $(DIRS) headers
+all: headers
 
 ##############################
 
 $(DIRS):
 	mkdir -p $@
 
-headers:
-	curl https://api.github.com/users/conao3/repos?per_page=1000 | \
-	  jq -r '.[] | .name' | \
-	  xargs -n1 -P$(P) -I^ bash -c \
-	    "echo '{\"name\" : \"^\"}' | \
-	      mustache - mustache/header.svg.mustache > blob/headers/svg/^.svg && \
-	      convert blob/headers/svg/^.svg blob/headers/png/^.png && \
-	      echo ^"
+headers: $(DIRS)
+	$(MAKE) headers-client \
+	REPOS="$(shell curl https://api.github.com/users/conao3/repos\?per_page=1000 | jq -r '.[] | .name')"
 
-fetch-github:
-	$(eval REPOS := $(shell curl https://api.github.com/users/conao3/repos\?per_page=1000 | jq -r '.[] | .name'))
+headers-client: $(REPOS:%=blob/headers/png/%.png)
+
+blob/headers/png/%.png: blob/headers/svg/%.svg
+	convert $< $@
+
+blob/headers/svg/%.svg:
+	echo '{\"name\" : \"$*\"}' | mustache - mustache/header.svg.mustache > $@
 
 ##############################
 
