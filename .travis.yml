@@ -1,7 +1,18 @@
 language: generic
 
-script:
-  - pwd
+addons:
+  apt:
+    packages:
+      - fonts-roboto
+
+stages:
+  - make
+    script:
+      - emacs --version
+  - push
+    if: branch = master
+    script:
+      - emacs --version
 
 # language: clojure
 # dist: xenial
