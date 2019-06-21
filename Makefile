@@ -16,6 +16,9 @@ DIRS := blob/headers/png blob/headers/svg
 
 all: $(DIRS) headers
 
+fetch:
+	$(eval REPOS := $(shell curl https://api.github.com/users/conao3/repos\?per_page=1000 | jq -r '.[] | .name'))
+
 ##############################
 
 $(DIRS):
