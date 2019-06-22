@@ -4,7 +4,8 @@ REPOS :=
 
 DIRS := blob/headers/png blob/headers/svg
 
-IMAGICK  := conao3/imagick-roboto:1.0.0    # from conao3/imagick:7.0.8
+# from conao3/imagick:7.0.8
+IMAGICK  := conao3/imagick-roboto:1.0.0
 MUSTACHE := conao3/mustache:1.1.0
 
 ##################################################
