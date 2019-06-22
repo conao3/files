@@ -15,8 +15,7 @@ install:
 
 script:
   - make checkout
-  - touch -d "1950-01-01" blob/headers/svg/*
-  - touch -d "1950-01-01" mustache/header.svg.mustache
+  - file . -print0 | xargs -0 touch -d "2000-01-01"
   - make -j8
   - make commit && make merge
   - if [ "${TRAVIS_BRANCH}" = "master" ]; then make push; fi
