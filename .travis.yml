@@ -15,9 +15,10 @@ install:
 
 script:
   - make checkout
-  - make -j8
-  - make commit && make merge
-  - if [ "${TRAVIS_BRANCH}" = "master" ]; then make push; fi
+  - make -rd
+  - ls -Rla
+  # - make commit && make merge
+  # - if [ "${TRAVIS_BRANCH}" = "master" ]; then make push; fi
 
 # language: clojure
 # dist: xenial
