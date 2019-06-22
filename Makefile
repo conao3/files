@@ -1,13 +1,5 @@
 all:
 
-# This Makefile require imageMagic and mustache command
-#
-#   $ brew install imageMagic
-#   $ gem install mustache
-
-# xargs parallel option
-P ?= 12
-
 REPOS :=
 
 DIRS := blob/headers/png blob/headers/svg
@@ -31,7 +23,7 @@ headers: $(DIRS)
 headers-client: $(REPOS:%=blob/headers/png/%.png)
 
 blob/headers/png/%.png: blob/headers/svg/%.svg
-	convert $< $@
+	docker run -v $$(pwd)/blob:/blob --rm conao3/imagick-roboto:1.0.0 convert /$< /$@
 
 blob/headers/svg/%.svg: mustache/header.svg.mustache
 	echo '{"name" : "$*"}' | docker run --rm -i -v $$(pwd)/mustache:/mustache conao3/mustache - $< > $@
