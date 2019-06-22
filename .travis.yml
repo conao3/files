@@ -14,7 +14,7 @@ install:
   - docker pull conao3/mustache:1.1.0
 
 script:
-  - touch blob/headers/png/*
   - make checkout
+  - touch blob/headers/png/*
   - make commit && make merge
   - if [ "${TRAVIS_BRANCH}" = "master" ]; then make push; fi
