@@ -1,14 +1,23 @@
 language: generic
 
-addons:
-  apt:
-    packages:
-      - fonts-roboto
+install:
+  - openssl aes-256-cbc -K $encrypted_34612acf6c90_key -iv $encrypted_34612acf6c90_iv -in travis.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - git config --global user.name conao3
+  - git config --global user.email conao3@gmail.com
+
+  - git remote -v
+  - git remote set-url origin git@github.com:conao3/files.git
+
+  - docker pull conao3/imagick
+  - docker pull conao3/imagick-roboto
+  - docker pull conao3/mustache
 
 script:
-  - emacs --version
-  - if [ "${TRAVIS_BRANCH}" = "master" ]; then echo "t"; else echo "nil"; fi
-  - echo "${TRAVIS_BRANCH}"
+  - make checkout
+  - make -j8
+  - make commit && make merge
+  - if [ "${TRAVIS_BRANCH}" = "master" ]; then make push; fi
 
 # language: clojure
 # dist: xenial

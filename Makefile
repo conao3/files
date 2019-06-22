@@ -31,13 +31,14 @@ blob/headers/svg/%.svg: mustache/header.svg.mustache
 ##############################
 
 checkout:
-	git checkout master
+	git checkout $(TRAVIS_BRANCH)
 	git checkout -b travis-$$TRAVIS_JOB_NUMBER
-	echo "job $$TRAVIS_JOB_NUMBER at $(shell date '+%Y/%m/%d %H:%M:%S')" >> commit.log
+	echo "job $$TRAVIS_JOB_NUMBER at $(shell TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S (%Z)')" >> commit.log
 
 commit:
-	git diff --cached --stat | tail -n1 >> commit.log
 	git add .
+	git diff --cached --stat | tail -n1 >> commit.log
+	git add commit.log
 	git commit --allow-empty -m "generate (job $$TRAVIS_JOB_NUMBER) [skip ci]"
 
 merge:
