@@ -9,9 +9,9 @@ install:
   - git remote -v
   - git remote set-url origin git@github.com:conao3/files.git
 
-  - docker pull conao3/imagick
-  - docker pull conao3/imagick-roboto
-  - docker pull conao3/mustache
+  - docker pull conao3/imagick:7.0.8
+  - docker pull conao3/imagick-roboto:1.0.0
+  - docker pull conao3/mustache:1.1.0
 
 script:
   - make checkout

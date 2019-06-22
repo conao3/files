@@ -4,6 +4,9 @@ REPOS :=
 
 DIRS := blob/headers/png blob/headers/svg
 
+IMAGIC   := conao3/imagick-roboto:1.0.0    # from conao3/imagick:7.0.8
+MUSTACHE := conao3/mustache:1.1.0
+
 ##################################################
 
 .PHONY: all headers headers-client checkout commit merge push clean
@@ -23,10 +26,10 @@ headers: $(DIRS)
 headers-client: $(REPOS:%=blob/headers/png/%.png)
 
 blob/headers/png/%.png: blob/headers/svg/%.svg
-	docker run -v $$(pwd)/blob:/blob --rm conao3/imagick-roboto:1.0.0 convert /$< /$@
+	docker run -v $$(pwd)/blob:/blob --rm $(IMAGICK) convert /$< /$@
 
 blob/headers/svg/%.svg: mustache/header.svg.mustache
-	echo '{"name" : "$*"}' | docker run --rm -i -v $$(pwd)/mustache:/mustache conao3/mustache - $< > $@
+	echo '{"name" : "$*"}' | docker run --rm -i -v $$(pwd)/mustache:/mustache $(MUSTACHE) - $< > $@
 
 ##############################
 
