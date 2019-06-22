@@ -15,7 +15,7 @@ install:
 
 script:
   - make checkout
-  - file . -print0 | xargs -0 touch -t 01010000
+  - find . -print0 | xargs -0 touch -t 01010000
   - make -j8
   - make commit && make merge
   - if [ "${TRAVIS_BRANCH}" = "master" ]; then make push; fi
