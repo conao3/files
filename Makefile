@@ -29,8 +29,8 @@ headers-client: $(REPOS:%=blob/headers/png/%.png)
 blob/headers/png/%.png: blob/headers/svg/%.svg
 	docker run -v $$(pwd)/blob:/blob --rm $(IMAGICK) convert /$< /$@
 
-blob/headers/svg/%.svg: mustache/header.svg.mustache
-	echo '{"name" : "$*"}' | docker run --rm -i -v $$(pwd)/mustache:/mustache $(MUSTACHE) - $< > $@
+blob/headers/svg/%.svg:
+	echo '{"name" : "$*"}' | docker run --rm -i -v $$(pwd)/mustache:/mustache $(MUSTACHE) - mustache/header.svg.mustache > $@
 
 ##############################
 
