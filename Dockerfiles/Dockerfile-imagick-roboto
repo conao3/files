@@ -1,0 +1,36 @@
+# -*- mode: Dockerfile; -*-
+
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the Affero GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the Affero GNU General Public
+# License for more details.
+#
+# You should have received a copy of the Affero GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+
+# Image from this Dockerfile tagged as ["conao3/imagick-roboto:1.0.0"]
+
+FROM conao3/imagick:7.0.8
+
+RUN apk add --no-cache --virtual .tools curl unzip
+RUN apk add --no-cache fontconfig
+
+WORKDIR /usr/share/fonts/roboto
+RUN curl -LO https://github.com/google/roboto/releases/download/v2.138/roboto-unhinted.zip && \
+unzip roboto-unhinted.zip -d /usr/share/fonts/roboto/ && \
+rm roboto-unhinted.zip
+
+RUN fc-cache -fv
+RUN fc-list
+
+RUN apk del .tools
+
+WORKDIR /
+CMD ["convert", "-version"]
