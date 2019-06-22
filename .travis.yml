@@ -15,7 +15,7 @@ install:
 
 script:
   - make checkout
-  - touch blob/headers/png/*
+  - touch -d "3000-01-01" blob/headers/png/*
   - make -j8
   - make commit && make merge
   - if [ "${TRAVIS_BRANCH}" = "master" ]; then make push; fi
