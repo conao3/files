@@ -16,5 +16,6 @@ install:
 script:
   - make checkout
   - touch blob/headers/png/*
+  - make -j8
   - make commit && make merge
   - if [ "${TRAVIS_BRANCH}" = "master" ]; then make push; fi
