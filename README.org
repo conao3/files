@@ -30,6 +30,9 @@ No need to install. Fetch file directory like https://raw.githubusercontent.com/
 
 * Usage
 Just fetch images directory.
+#+begin_src bash
+  git clone https://github.com/conao3/files.git
+#+end_src
 
 * Information
 ** Donation
