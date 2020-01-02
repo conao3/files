@@ -2,7 +2,7 @@ all:
 
 REPOS :=
 
-DIRS := blob/headers/png blob/headers/svg
+DIRS := .make blob/headers/png blob/headers/svg
 
 # from conao3/imagick:7.0.8
 IMAGICK  := conao3/imagick-roboto:1.0.0
@@ -17,19 +17,15 @@ all: headers
 
 ##############################
 
-$(DIRS):
-	mkdir -p $@
-
-headers: $(DIRS)
-	$(MAKE) headers-client \
-	REPOS="$(shell curl https://api.github.com/users/conao3/repos\?per_page=1000 | jq -r '.[] | .name')"
+headers: .make/github-cache-1 .make/github-cache-2 .make/github-cache-3
+	$(MAKE) headers-client REPOS="$(shell cat $^ | jq -r '.[] | .name')"
 
 headers-client: $(REPOS:%=blob/headers/png/%.png)
 
-blob/headers/png/%.png: blob/headers/svg/%.svg
+blob/headers/png/%.png: blob/headers/svg/%.svg blob/headers/png
 	docker run -v $$(pwd)/blob:/blob --rm $(IMAGICK) convert /$< /$@
 
-blob/headers/svg/%.svg: mustache/header.svg.mustache
+blob/headers/svg/%.svg: mustache/header.svg.mustache blob/headers/svg
 	echo '{"name" : "$*"}' | docker run --rm -i -v $$(pwd)/mustache:/mustache $(MUSTACHE) - $< > $@
 
 ##############################
@@ -53,6 +49,16 @@ merge:
 
 push:
 	git push origin master
+
+##############################
+
+$(DIRS):
+	mkdir -p $@
+
+.make/github-cache-%: .make
+	curl https://api.github.com/users/conao3/repos\?per_page=100\&page=$* > $@
+
+##############################
 
 clean:
 	rm -rf $(DIRS)
