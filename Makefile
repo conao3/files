@@ -33,7 +33,6 @@ blob/headers/svg/%.svg: mustache/header.svg.mustache blob/headers/svg
 checkout:
 	git checkout $(TRAVIS_BRANCH)
 	git checkout -b travis-$$TRAVIS_JOB_NUMBER
-	echo "job $$TRAVIS_JOB_NUMBER at $(shell TZ=Asia/Tokyo date '+%Y/%m/%d %H:%M:%S (%Z)')" >> commit.log
 
 commit:
 	git add .
