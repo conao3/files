@@ -54,10 +54,10 @@ Feel free to send PR!
 *** make
 ~make~ runs ~make $(DIRS)~ and ~make headers~ that prepare dirs and create headers.
 
-This Makefile require ~imageMagic~ and ~mustache~.
+This Makefile require ~ImageMagick~ and ~mustache~.
 
 #+begin_src bash
-  brew install imagemagic
+  brew install imagemagick
   gem install mustache
 #+end_src
 
